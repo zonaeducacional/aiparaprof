@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA na Educação: As Manchetes Falam por Si</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5; /* Um tom suave para o fundo */
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background-color: #4a90e2; /* Um azul vibrante e educativo */
+            color: #fff;
+            padding: 40px 20px;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            text-align: center;
+        }
+        .header h1 {
+            font-size: 3.5rem; /* Título mais impactante */
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.2;
+        }
+        .header p {
+            font-size: 1.4rem; /* Subtítulo convidativo */
+            font-weight: 300;
+        }
+        .section {
+            background-color: #fff;
+            padding: 40px;
+            margin-top: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+        }
+        .section h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #2c5282; /* Azul mais escuro para títulos de seção */
+            text-align: center;
+        }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        .grid-item {
+            background-color: #f7f9fc; /* Fundo mais claro para os itens */
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start; /* Alinha o conteúdo ao topo */
+            align-items: center;
+            cursor: pointer; /* Indica que o item é clicável */
+        }
+        .grid-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+        }
+        .grid-item img {
+            max-width: 100%;
+            height: auto; /* Permite que a altura se ajuste naturalmente */
+            max-height: 250px; /* Limita a altura máxima para não desorganizar o layout */
+            object-fit: contain; /* Garante que a imagem inteira seja visível */
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #e2e8f0;
+        }
+        .grid-item h3 {
+            font-size: 1.3rem; /* Ajustei o tamanho da fonte para as manchetes */
+            font-weight: 600;
+            color: #3182ce; /* Azul para títulos dos itens */
+            margin-bottom: 10px;
+            min-height: 60px; /* Garante que as manchetes tenham espaço e não quebrem o layout */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        .grid-item p {
+            font-size: 1rem;
+            color: #555;
+            text-align: left; /* Texto alinhado à esquerda para melhor leitura */
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-top: 30px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 15px;
+        }
+        .footer {
+            background-color: #333;
+            color: #eee;
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 40px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            font-size: 0.9rem;
+        }
+        .footer a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1000; /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            justify-content: center;
+            align-items: center;
+            cursor: pointer; /* Indicate it's clickable to close */
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            animation-name: zoom;
+            animation-duration: 0.6s;
+            cursor: default; /* Change cursor back to default for the image */
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @keyframes zoom {
+            from {transform: scale(0)}
+            to {transform: scale(1)}
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            .header p {
+                font-size: 1.2rem;
+            }
+            .section h2 {
+                font-size: 2rem;
+            }
+            .grid-item img {
+                max-height: 200px; /* Ajusta a altura máxima para telas menores */
+            }
+            .grid-item h3 {
+                font-size: 1.1rem;
+                min-height: 50px;
+            }
+            .section {
+                padding: 25px;
+            }
+            .close-button {
+                font-size: 30px;
+                top: 10px;
+                right: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            .header p {
+                font-size: 1rem;
+            }
+            .section h2 {
+                font-size: 1.8rem;
+            }
+            .grid-item img {
+                max-height: 180px; /* Ajusta a altura máxima para as menores telas */
+            }
+            .grid-item h3 {
+                font-size: 1rem;
+                min-height: 40px;
+            }
+            .section {
+                padding: 25px;
+            }
+            .close-button {
+                font-size: 25px;
+                top: 8px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <h1>Desvende o Poder da **Inteligência Artificial** na sua Sala de Aula! ✨</h1>
+            <p></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2>IA e Educação: O Que os debates atuais Nos Revelam!</h2>
+            <p class="text-lg text-center mb-10 text-gray-700">A Inteligência Artificial já é tema central nos debates sobre o futuro da educação. As notícias e análises que circulam, como as que destacamos abaixo, mostram um cenário de transformações iminentes e oportunidades para professores visionários. Clique nas imagens para vê-las em destaque e ler as manchetes com clareza!</p>
+
+            <div class="grid-container">
+                <div class="grid-item">
+                    <img src="https://web2.nekoweb.org/imagensainaeducacao/Captura%20de%20tela%20de%202025-08-28%2020-21-37.png" alt="A IA na Escola Pública: Entenda os Desafios e Oportunidades">
+                    <h3>A IA na escola pública: Entenda os desafios e oportunidades</h3>
+                </div>
+                <div class="grid-item">
+                    <img src="https://web2.nekoweb.org/imagensainaeducacao/Captura%20de%20tela%20de%202025-08-28%2020-22-12.png" alt="O Papel da IA no Aprimoramento da Educação: Personalização e Eficiência">
+                    <h3>O papel da IA no aprimoramento da educação: personalização e eficiência</h3>
+                </div>
+                <div class="grid-item">
+                    <img src="https://web2.nekoweb.org/imagensainaeducacao/Captura%20de%20tela%20de%202025-08-28%2020-22-34.png" alt="Educação e IA: Como a Tecnologia Pode Transformar o Engajamento dos Alunos">
+                    <h3>Educação e IA: como a tecnologia pode transformar o engajamento dos alunos</h3>
+                </div>
+                <div class="grid-item">
+                    <img src="https://web2.nekoweb.org/imagensainaeducacao/Captura%20de%20tela%20de%202025-08-28%2020-22-48.png" alt="Ferramentas de IA para Educadores: Avaliação e Feedback Instantâneo">
+                    <h3>Ferramentas de IA para educadores: avaliação e feedback instantâneo</h3>
+                </div>
+                <div class="grid-item">
+                    <img src="https://web2.nekoweb.org/imagensainaeducacao/Captura%20de%20tela%20de%202025-08-28%2020-23-05.png" alt="O Futuro do Trabalho e a IA: Preparando Alunos para Novas Habilidades">
+                    <h3>O futuro do trabalho e a IA: preparando alunos para novas habilidades</h3>
+                </div>
+                <div class="grid-item">
+                    <img src="https://web2.nekoweb.org/imagensainaeducacao/Captura%20de%20tela%20de%202025-08-28%2020-23-17.png" alt="Inovação Pedagógica com IA: Desafios e Oportunidades para o Ensino Superior">
+                    <h3>Inovação pedagógica com IA: desafios e oportunidades para o ensino superior</h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="section text-center">
+            <h2>Assista e Inspire-se: A IA em Ação e o Debate Necessário! 🎬</h2>
+            <p class="text-lg text-gray-700 mb-8"></p>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/2dVo_suoYdQ?si=HwktNkFnzZ74oQ2z&start=911" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2025 IA na Educação. Todos os direitos reservados. | <a href="#">Política de Privacidade</a></p>
+    </div>
+
+    <!-- The Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="img01">
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("imageModal");
+        var modalImg = document.getElementById("img01");
+        var gridItems = document.querySelectorAll(".grid-item");
+
+        // Loop through all grid items and add a click event listener to their images
+        gridItems.forEach(function(item) {
+            var img = item.querySelector("img");
+            img.onclick = function() {
+                modal.style.display = "flex"; // Use flex to center the content
+                modalImg.src = this.src;
+                modalImg.alt = this.alt; // Use alt text for accessibility
+            }
+        });
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close-button")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        // When the user clicks anywhere outside of the modal content, close it
+        modal.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Function to close the modal, also called by the close button
+        function closeModal() {
+            modal.style.display = "none";
+        }
+    </script>
+</body>
+</html>
