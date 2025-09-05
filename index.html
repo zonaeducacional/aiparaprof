@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IA na Educação: As Manchetes Falam por Si</title>
+    <title>IA na Educação: Preparação para a Aula</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f0f2f5; /* Um tom suave para o fundo */
+            background-color: #f0f2f5;
             color: #333;
             line-height: 1.6;
         }
@@ -19,7 +19,7 @@
             padding: 20px;
         }
         .header {
-            background-color: #4a90e2; /* Um azul vibrante e educativo */
+            background-color: #4a90e2;
             color: #fff;
             padding: 40px 20px;
             border-bottom-left-radius: 15px;
@@ -27,13 +27,13 @@
             text-align: center;
         }
         .header h1 {
-            font-size: 3.5rem; /* Título mais impactante */
+            font-size: 3.5rem;
             font-weight: 700;
             margin-bottom: 10px;
             line-height: 1.2;
         }
         .header p {
-            font-size: 1.4rem; /* Subtítulo convidativo */
+            font-size: 1.4rem;
             font-weight: 300;
         }
         .section {
@@ -41,13 +41,13 @@
             padding: 40px;
             margin-top: 30px;
             border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08); /* Sombra mais suave */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         }
         .section h2 {
             font-size: 2.5rem;
             font-weight: 600;
             margin-bottom: 25px;
-            color: #2c5282; /* Azul mais escuro para títulos de seção */
+            color: #2c5282;
             text-align: center;
         }
         .grid-container {
@@ -57,7 +57,7 @@
             margin-top: 30px;
         }
         .grid-item {
-            background-color: #f7f9fc; /* Fundo mais claro para os itens */
+            background-color: #f7f9fc;
             padding: 25px;
             border-radius: 12px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
@@ -65,9 +65,9 @@
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             display: flex;
             flex-direction: column;
-            justify-content: flex-start; /* Alinha o conteúdo ao topo */
+            justify-content: flex-start;
             align-items: center;
-            cursor: pointer; /* Indica que o item é clicável */
+            cursor: pointer;
         }
         .grid-item:hover {
             transform: translateY(-8px);
@@ -75,28 +75,23 @@
         }
         .grid-item img {
             max-width: 100%;
-            height: auto; /* Permite que a altura se ajuste naturalmente */
-            max-height: 250px; /* Limita a altura máxima para não desorganizar o layout */
-            object-fit: contain; /* Garante que a imagem inteira seja visível */
+            height: auto;
+            max-height: 250px;
+            object-fit: contain;
             border-radius: 8px;
             margin-bottom: 15px;
             border: 1px solid #e2e8f0;
         }
         .grid-item h3 {
-            font-size: 1.3rem; /* Ajustei o tamanho da fonte para as manchetes */
+            font-size: 1.3rem;
             font-weight: 600;
-            color: #3182ce; /* Azul para títulos dos itens */
+            color: #3182ce;
             margin-bottom: 10px;
-            min-height: 60px; /* Garante que as manchetes tenham espaço e não quebrem o layout */
+            min-height: 60px;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-        }
-        .grid-item p {
-            font-size: 1rem;
-            color: #555;
-            text-align: left; /* Texto alinhado à esquerda para melhor leitura */
         }
         .video-container {
             position: relative;
@@ -116,6 +111,31 @@
             border: 0;
             border-radius: 15px;
         }
+        
+        /* --- NOVA SEÇÃO DE DESTAQUE --- */
+        .cta-section {
+            background-color: #e3f2fd; /* Um azul bem claro para diferenciar */
+            border-left: 8px solid #4a90e2;
+            text-align: center;
+        }
+        .cta-button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 35px;
+            background-color: #3182ce;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(49, 130, 206, 0.3);
+        }
+        .cta-button:hover {
+            background-color: #2c5282;
+            transform: translateY(-3px);
+        }
+        
         .footer {
             background-color: #333;
             color: #eee;
@@ -134,22 +154,21 @@
             text-decoration: underline;
         }
 
-        /* Modal Styles */
+        /* --- ESTILOS DO MODAL (INALTERADO) --- */
         .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
+            display: none;
+            position: fixed;
+            z-index: 1000;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
             justify-content: center;
             align-items: center;
-            cursor: pointer; /* Indicate it's clickable to close */
+            cursor: pointer;
         }
-
         .modal-content {
             margin: auto;
             display: block;
@@ -159,9 +178,8 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
             animation-name: zoom;
             animation-duration: 0.6s;
-            cursor: default; /* Change cursor back to default for the image */
+            cursor: default;
         }
-
         .close-button {
             position: absolute;
             top: 15px;
@@ -172,87 +190,48 @@
             transition: 0.3s;
             cursor: pointer;
         }
-
         .close-button:hover,
         .close-button:focus {
             color: #bbb;
             text-decoration: none;
-            cursor: pointer;
         }
-
         @keyframes zoom {
             from {transform: scale(0)}
             to {transform: scale(1)}
         }
 
-        /* Estilos responsivos */
+        /* --- ESTILOS RESPONSIVOS (AJUSTES MENORES) --- */
         @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            .header p {
-                font-size: 1.2rem;
-            }
-            .section h2 {
-                font-size: 2rem;
-            }
-            .grid-item img {
-                max-height: 200px; /* Ajusta a altura máxima para telas menores */
-            }
-            .grid-item h3 {
-                font-size: 1.1rem;
-                min-height: 50px;
-            }
-            .section {
-                padding: 25px;
-            }
-            .close-button {
-                font-size: 30px;
-                top: 10px;
-                right: 20px;
-            }
+            .header h1 { font-size: 2.5rem; }
+            .header p { font-size: 1.2rem; }
+            .section h2 { font-size: 2rem; }
+            .section { padding: 25px; }
+            .grid-item img { max-height: 200px; }
+            .grid-item h3 { font-size: 1.1rem; min-height: 50px; }
+            .close-button { font-size: 30px; top: 10px; right: 20px; }
         }
         @media (max-width: 480px) {
-            .header h1 {
-                font-size: 2rem;
-            }
-            .header p {
-                font-size: 1rem;
-            }
-            .section h2 {
-                font-size: 1.8rem;
-            }
-            .grid-item img {
-                max-height: 180px; /* Ajusta a altura máxima para as menores telas */
-            }
-            .grid-item h3 {
-                font-size: 1rem;
-                min-height: 40px;
-            }
-            .section {
-                padding: 25px;
-            }
-            .close-button {
-                font-size: 25px;
-                top: 8px;
-                right: 15px;
-            }
+            .header h1 { font-size: 2rem; }
+            .header p { font-size: 1rem; }
+            .section h2 { font-size: 1.8rem; }
+            .grid-item img { max-height: 180px; }
+            .grid-item h3 { font-size: 1rem; min-height: 40px; }
+            .close-button { font-size: 25px; top: 8px; right: 15px; }
         }
     </style>
 </head>
 <body>
-    <div class="header">
+    <header class="header">
         <div class="container">
-            <h1>Desvende o Poder da **Inteligência Artificial** na sua Sala de Aula! ✨</h1>
-            <p></p>
+            <h1>Inteligência Artificial na Educação ✨</h1>
+            <p>Prepare-se para nossa próxima aula seguindo os passos abaixo.</p>
         </div>
-    </div>
+    </header>
 
-    <div class="container">
-        <div class="section">
-            <h2>IA e Educação: O Que os debates atuais Nos Revelam!</h2>
-            <p class="text-lg text-center mb-10 text-gray-700">A Inteligência Artificial já é tema central nos debates sobre o futuro da educação. As notícias e análises que circulam, como as que destacamos abaixo, mostram um cenário de transformações iminentes e oportunidades para professores visionários. Clique nas imagens para vê-las em destaque e ler as manchetes com clareza!</p>
-
+    <main class="container">
+        <section class="section">
+            <h2>Passo 1: Explore o Cenário Atual</h2>
+            <p class="text-lg text-center mb-10 text-gray-700">A IA já é tema central nos debates sobre o futuro da educação. Analise as manchetes abaixo para compreender as discussões atuais, os desafios e as oportunidades. Clique nas imagens para ampliar.</p>
             <div class="grid-container">
                 <div class="grid-item">
                     <img src="https://web2.nekoweb.org/imagensainaeducacao/Captura%20de%20tela%20de%202025-08-28%2020-21-37.png" alt="A IA na Escola Pública: Entenda os Desafios e Oportunidades">
@@ -279,59 +258,60 @@
                     <h3>Inovação pedagógica com IA: desafios e oportunidades para o ensino superior</h3>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="section text-center">
-            <h2>Assista e Inspire-se: A IA em Ação e o Debate Necessário! 🎬</h2>
-            <p class="text-lg text-gray-700 mb-8"></p>
+        <section class="section">
+            <h2>Passo 2: Aprofunde o Debate 🎬</h2>
+            <p class="text-lg text-center mb-8 text-gray-700">Assista a este trecho de um debate para contextualizar as discussões e inspirar suas reflexões sobre o uso prático da IA em sala de aula.</p>
             <div class="video-container">
                 <iframe src="https://www.youtube.com/embed/2dVo_suoYdQ?si=HwktNkFnzZ74oQ2z&start=911" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-        </div>
-    </div>
+        </section>
 
-    <div class="footer">
-        <p>&copy; 2025 IA na Educação. Todos os direitos reservados. | <a href="#">Política de Privacidade</a></p>
-    </div>
+        <section class="section cta-section">
+            <h2>Passo 3: Descubra o Storyboard!</h2>
+            <p class="text-lg text-gray-800">Agora que você já tem um panorama sobre o assunto, sua tarefa é ler um storyboard. Pense em como uma Inteligência Artificial poderia ajudar a resolver um problema específico na sua escola ou na sua comunidade. Use o link abaixo para acessar a ferramenta e começar a ter ideias (ligue o reprodutor de áudio (Botão Ouvir), se quiser..</p>
+            <a href="https://gemini.google.com/share/eb1e7d109a56" target="_blank" rel="noopener noreferrer" class="cta-button">
+                🚀 Acessar o Storyboard
+            </a>
+        </section>
+    </main>
 
-    <!-- The Modal -->
+    <footer class="footer">
+        <p>&copy; 2025 IA na Educação. Todos os direitos reservados. | <a href="#">Professor Sérgio Araújo</a></p>
+    </footer>
+
     <div id="imageModal" class="modal">
         <span class="close-button" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="img01">
     </div>
 
     <script>
-        // Get the modal
         var modal = document.getElementById("imageModal");
         var modalImg = document.getElementById("img01");
         var gridItems = document.querySelectorAll(".grid-item");
 
-        // Loop through all grid items and add a click event listener to their images
         gridItems.forEach(function(item) {
             var img = item.querySelector("img");
             img.onclick = function() {
-                modal.style.display = "flex"; // Use flex to center the content
+                modal.style.display = "flex";
                 modalImg.src = this.src;
-                modalImg.alt = this.alt; // Use alt text for accessibility
+                modalImg.alt = this.alt;
             }
         });
 
-        // Get the <span> element that closes the modal
         var span = document.getElementsByClassName("close-button")[0];
 
-        // When the user clicks on <span> (x), close the modal
         span.onclick = function() {
             modal.style.display = "none";
         }
 
-        // When the user clicks anywhere outside of the modal content, close it
         modal.onclick = function(event) {
             if (event.target == modal) {
                 modal.style.display = "none";
             }
         }
 
-        // Function to close the modal, also called by the close button
         function closeModal() {
             modal.style.display = "none";
         }
